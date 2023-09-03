@@ -1,0 +1,19 @@
+version: '3.1'
+services: 
+  db:
+    image: postgres:14
+    container_name: pgsql14
+    hostname: pgsql14
+    working_dir: /var/lib/postgresql/data
+    restart: always
+    ports: 
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+
+networks:
+  postgres-net:
+    driver: bridge
